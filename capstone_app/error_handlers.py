@@ -8,12 +8,11 @@ class APIException(Exception):
     error = "Internal Server Error"
     status_code = 500
 
-    def __init__(self, error=None, status_code=None, value=str(), message=str()):
+    def __init__(self, error=None, value=str(), message=str()):
         super().__init__()
         if error is not None:
-            self.error = error
-        if status_code is not None:
-            self.status_code = status_code
+            self.error = error[0]
+            self.status_code = error[1]
         self.value = value
         self.message = message
 
