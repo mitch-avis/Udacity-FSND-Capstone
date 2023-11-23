@@ -15,6 +15,6 @@ class Config:
     FLASK_APP = getenv("FLASK_APP", "udacity_fsnd_capstone")
     FLASK_DEBUG = getenv("FLASK_DEBUG", "False").lower() in ("true", "t", "1")
     FLASK_ENV = getenv("FLASK_ENV", "production")
-    FLASK_TESTING = getenv("FLASK_TESTING", "False").lower() in ("true", "t", "1")
     HOST = getenv("HOST", "0.0.0.0")
     PORT = getenv("PORT", "8080")
+    TESTING = getenv("TESTING", "False").lower() in ("true", "t", "1")
