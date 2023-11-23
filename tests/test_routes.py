@@ -13,7 +13,7 @@ def test_client():
 
 
 def test_index_page(test_client):
-    response = test_client.get(f"/")
+    response = test_client.get("/")
     data = json.loads(response.data)
     actual = data["greeting"]
 
