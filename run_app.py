@@ -2,7 +2,7 @@
 from waitress import serve
 
 from capstone_app import create_app, log
-from capstone_app.env_config import Config
+from capstone_app.config.env_config import Config
 
 
 def main():
