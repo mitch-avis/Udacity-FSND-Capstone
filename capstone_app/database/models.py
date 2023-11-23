@@ -1,7 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Column, String
 
-from capstone_app.env_config import Config
+from capstone_app.config.env_config import Config
 
 DB_USER = Config.DB_USER
 DB_PASSWORD = Config.DB_PASSWORD
@@ -23,6 +23,7 @@ def setup_db(app, database_path=db_path):
 
 
 class Person(db.Model):
+    # pylint: disable=R0903
     """Person"""
 
     __tablename__ = "People"

@@ -2,6 +2,7 @@ from os import getenv
 
 
 class Config:
+    # pylint: disable=R0903
     ALGORITHMS = ["RS256"]
     ALLOWED_ORIGINS = getenv("ALLOWED_ORIGINS", "*")
     API_AUDIENCE = getenv("DB_NAME", "capstone")

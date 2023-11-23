@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify
 from werkzeug.exceptions import HTTPException
 
+from capstone_app import log  # pylint: disable=R0401
+
 errors = Blueprint("errors", __name__)
 
 
@@ -31,6 +33,7 @@ class APIException(Exception):
 
 @errors.app_errorhandler(APIException)
 def invalid_api_usage(error: APIException):
+    log.debug(str(error.to_dict()))
     return jsonify(error.to_dict()), error.status_code
 
 
@@ -50,4 +53,5 @@ def handle_exception(error: Exception):
             "status_code": status_code,
             "detail": str(error),
         }
+    log.debug(str(response))
     return jsonify(response), status_code
