@@ -4,9 +4,10 @@ from logging.config import dictConfig
 from flask import Flask
 from flask_cors import CORS
 
-from capstone_app.env_config import Config
-from capstone_app.logger_config import LOGGING_CONFIG
-from capstone_app.models import setup_db
+from capstone_app.config.auth_config import auth_config
+from capstone_app.config.env_config import Config
+from capstone_app.config.logger_config import LOGGING_CONFIG
+from capstone_app.database.models import setup_db
 
 # Logger formatting
 dictConfig(LOGGING_CONFIG)
@@ -19,9 +20,11 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     # Load flask config
     app.config.from_object(config_class)
+    # Load auth config secrets
+    app.secret_key = auth_config["WEBAPP"]["SECRET_KEY"]
     # Configure CORS
-    ALLOWED_ORIGINS = config_class.ALLOWED_ORIGINS
-    CORS(app, origins=ALLOWED_ORIGINS)
+    allowed_origins = config_class.ALLOWED_ORIGINS
+    CORS(app, origins=allowed_origins)
     # Finish app initialization
     with app.app_context():
         # Add error handlers to app
@@ -36,7 +39,7 @@ def create_app(config_class=Config):
 
 def _initialize_error_handlers(app: Flask):
     """Registers Flask error handlers blueprint."""
-    from capstone_app.error_handlers import errors  # pylint: disable=C0415
+    from capstone_app.utils.error_handlers import errors  # pylint: disable=C0415
 
     # Add error handlers blueprint to app
     app.register_blueprint(errors)
@@ -44,7 +47,7 @@ def _initialize_error_handlers(app: Flask):
 
 def _initialize_api_endpoints(app: Flask):
     """Registers Flask API endpoints blueprint."""
-    from capstone_app.routes import bp  # pylint: disable=C0415
+    from capstone_app.routes.api import api  # pylint: disable=C0415
 
     # Add API endpoints blueprint to app
-    app.register_blueprint(bp)
+    app.register_blueprint(api)
