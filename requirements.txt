@@ -40,4 +40,4 @@ tomlkit==0.12.3
 typing_extensions==4.8.0
 waitress==2.1.2
 Werkzeug==3.0.1
-wheel==0.41.3
+wheel==0.42.0
