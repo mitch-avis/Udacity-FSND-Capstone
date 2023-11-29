@@ -16,6 +16,7 @@ log = logging.getLogger(__name__)
 
 
 def create_app(config_class=Config):
+    """Creates the Flask application."""
     # Create Flask app
     app = Flask(__name__)
     # Load flask config
@@ -27,14 +28,28 @@ def create_app(config_class=Config):
     CORS(app, origins=allowed_origins)
     # Finish app initialization
     with app.app_context():
+        # Initialize database
+        _initialize_database(app, config_class)
         # Add error handlers to app
         _initialize_error_handlers(app)
         # Add API endpoints to app
         _initialize_api_endpoints(app)
-        # Initialize database
-        setup_db(app)
         # Return initialized app
         return app
+
+
+def _initialize_database(app: Flask, config_class: Config):
+    """Initializes the database using loaded configuration variables."""
+    # Load database variables from config class
+    db_user = config_class.DB_USER
+    db_password = config_class.DB_PASSWORD
+    db_host = config_class.DB_HOST
+    db_port = config_class.DB_PORT
+    db_name = config_class.DB_NAME
+    # Construct database path from variables
+    db_path = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+    # Initialize database
+    setup_db(app, db_path)
 
 
 def _initialize_error_handlers(app: Flask):
