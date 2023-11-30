@@ -3,7 +3,7 @@ from flask import Blueprint, jsonify, request
 
 from capstone_app import log  # pylint: disable=R0401
 from capstone_app.auth.auth import requires_auth
-from capstone_app.database.models import Actor, Movie
+from capstone_app.database.models import Actor, Movie, db
 from capstone_app.errors.views import APIError
 
 BAD_REQUEST = ["Bad Request", 400]
@@ -40,7 +40,7 @@ def home():
 @requires_auth("get:actors")
 def get_actors(payload):
     log.debug("payload: %s", payload)
-    actors_results = Actor.query.order_by(Actor.id).all()
+    actors_results = db.session.query(Actor).order_by(Actor.id).all()
     actors = []
     for actor in actors_results:
         actors.append(actor.short())
@@ -63,7 +63,7 @@ def get_actors(payload):
 @requires_auth("get:actor-by-id")
 def get_actor_by_id(payload, actor_id):
     log.debug("payload: %s", payload)
-    actor = Actor.query.get(actor_id)
+    actor = db.session.get(Actor, actor_id)
     if not actor:
         value = actor_id
         message = f"No actor with actor_id [{actor_id}] found."
@@ -87,15 +87,20 @@ def create_actor(payload):
     if not request_body:
         message = "Missing request body."
         raise APIError(BAD_REQUEST, None, message)
-    name = request_body["name"]
+    try:
+        name = request_body["name"]
+        age = request_body["age"]
+        gender = request_body["gender"]
+    except KeyError as exc:
+        value = exc.args
+        message = "New actor must have valid name, age, and gender."
+        raise APIError(BAD_REQUEST, value, message) from exc
     if name == "":
         message = "Actor name cannot be blank."
         raise APIError(BAD_REQUEST, None, message)
-    age = request_body["age"]
     if age == "":
         message = "Actor age cannot be blank."
         raise APIError(BAD_REQUEST, None, message)
-    gender = request_body["gender"]
     if gender == "":
         message = "Actor gender cannot be blank."
         raise APIError(BAD_REQUEST, None, message)
@@ -116,7 +121,7 @@ def create_actor(payload):
 @requires_auth("patch:actor")
 def update_actor(payload, actor_id):
     log.debug("payload: %s", payload)
-    actor = Actor.query.get(actor_id)
+    actor = db.session.get(Actor, actor_id)
     if not actor:
         value = actor_id
         message = f"No actor with actor_id [{actor_id}] found."
@@ -156,7 +161,7 @@ def update_actor(payload, actor_id):
 @requires_auth("delete:actor")
 def delete_actor(payload, actor_id):
     log.debug("payload: %s", payload)
-    actor = Actor.query.get(actor_id)
+    actor = db.session.get(Actor, actor_id)
     if not actor:
         value = actor_id
         message = f"No actor with actor_id [{actor_id}] found."
@@ -177,7 +182,7 @@ def delete_actor(payload, actor_id):
 @requires_auth("get:movies")
 def get_movies(payload):
     log.debug("payload: %s", payload)
-    movies_results = Movie.query.order_by(Movie.id).all()
+    movies_results = db.session.query(Movie).order_by(Movie.id).all()
     movies = []
     for movie in movies_results:
         movies.append(movie.short())
@@ -200,7 +205,7 @@ def get_movies(payload):
 @requires_auth("get:movie-by-id")
 def get_movie_by_id(payload, movie_id):
     log.debug("payload: %s", payload)
-    movie = Movie.query.get(movie_id)
+    movie = db.session.get(Movie, movie_id)
     if not movie:
         value = movie_id
         message = f"No movie with movie_id [{movie_id}] found."
@@ -224,22 +229,28 @@ def create_movie(payload):
     if not request_body:
         message = "Missing request body."
         raise APIError(BAD_REQUEST, None, message)
-    title = request_body["title"]
+    try:
+        title = request_body["title"]
+        release_date = request_body["release_date"]
+        cast = request_body["cast"]
+    except KeyError as exc:
+        value = exc.args
+        message = "New movie must have valid title, release_date, and cast."
+        raise APIError(BAD_REQUEST, value, message) from exc
     if title == "":
         message = "Movie title cannot be blank."
         raise APIError(BAD_REQUEST, None, message)
-    release_date = dateparser.parse(request_body["release_date"])
+    release_date = dateparser.parse(release_date)
     if not release_date:
         value = request_body["release_date"]
         message = "Invalid date format."
         raise APIError(BAD_REQUEST, value, message)
     release_date = release_date.date()
-    cast = request_body["cast"]
     if cast is None:
         message = "Movie requires cast (list of actors)."
         raise APIError(BAD_REQUEST, None, message)
     new_movie = Movie(title, release_date)
-    actors = Actor.query.filter(Actor.name.in_(cast)).all()
+    actors = db.session.query(Actor).filter(Actor.name.in_(cast)).all()
     if len(cast) == len(actors):
         new_movie.cast = actors
         new_movie.insert()
@@ -261,7 +272,7 @@ def create_movie(payload):
 @requires_auth("patch:movie")
 def update_movie(payload, movie_id):
     log.debug("payload: %s", payload)
-    movie = Movie.query.get(movie_id)
+    movie = db.session.get(Movie, movie_id)
     if not movie:
         value = movie_id
         message = f"No movie with movie_id [{movie_id}] found."
@@ -288,7 +299,7 @@ def update_movie(payload, movie_id):
         if not cast:
             message = "Movie requires cast (list of actors)."
             raise APIError(BAD_REQUEST, None, message)
-        actors = Actor.query.filter(Actor.name.in_(cast)).all()
+        actors = db.session.query(Actor).filter(Actor.name.in_(cast)).all()
         if len(cast) == len(actors):
             movie.cast = actors
         else:
@@ -310,7 +321,7 @@ def update_movie(payload, movie_id):
 @requires_auth("delete:movie")
 def delete_movie(payload, movie_id):
     log.debug("payload: %s", payload)
-    movie = Movie.query.get(movie_id)
+    movie = db.session.get(Movie, movie_id)
     if not movie:
         value = movie_id
         message = f"No movie with movie_id [{movie_id}] found."
