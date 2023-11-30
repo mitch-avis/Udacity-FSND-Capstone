@@ -1,0 +1,872 @@
+{
+	"info": {
+		"_postman_id": "338f1ca7-efe0-46c6-8321-9e8635bddda4",
+		"name": "Udacity-FSND-Capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4400338"
+	},
+	"item": [
+		{
+			"name": "Casting Assistant",
+			"item": [
+				{
+					"name": "Actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/1",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Edward Norton\",\n\t\"age\": \"54\",\n    \"gender\": \"male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\": \"59\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Fight Club\",\n\t\"release_date\": \"10/15/1999\",\n\t\"cast\": [\"Brad Pitt\", \"Edward Norton\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Fight Club!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsMENtVGp5UEpFSEVVcTJmRFhLZiJ9.eyJpc3MiOiJodHRwczovL2Rldi01dHhqam8xZzFqcHk0MjdiLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTY4MzAzZmYxNzA5YzI4ZDM3YzE3NzMiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTcwMTMzNjA5OCwiZXhwIjoxNzAxNDIyNDk4LCJhenAiOiIxRjhsQjk4WXJSMlIwaUJxOXF6UU1wWWRvSFpQbG5WMSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OmFjdG9yLWJ5LWlkIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZS1ieS1pZCIsImdldDptb3ZpZXMiXX0.EeObD0VxEEDA9eKe2PAFOWLp6nffn6w1wKDxlGVTZ4-Qz8hW1WXCNtNYrK-5weeTfj0c009bgqtoP1dZeY5aKj9x0jt7hSsMaRT1CU4xeGtnby9Gl1X0FRTOU_VcXoWyE9Oh8wIf8GocWWL6N8gIRpsKlndqz58fAlbT-q0-36qkTWc-wj0WifoLuoho5XPnAEfIDXeAP1I4bjdgh_QN5F86Y-FuAw8UNIK393hCeYOrEVWEZvxuDT23lehcu4TU-7upDxaAcF_UFtzhOzuJtynWI2MgA6t2ZErx9rtXSORlzRqOcvIV0MyhTT5_frCWhwVCisPY1mjj7GiZZ1DLUw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Casting Director",
+			"item": [
+				{
+					"name": "Actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/1",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Edward Norton\",\n\t\"age\": \"54\",\n    \"gender\": \"male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\": \"59\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Fight Club\",\n\t\"release_date\": \"10/15/1999\",\n\t\"cast\": [\"Brad Pitt\", \"Edward Norton\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Fight Club!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsMENtVGp5UEpFSEVVcTJmRFhLZiJ9.eyJpc3MiOiJodHRwczovL2Rldi01dHhqam8xZzFqcHk0MjdiLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTY4MzA2NGNiYmFmOThiNmUyY2E2YWQiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTcwMTMzNjE0NSwiZXhwIjoxNzAxNDIyNTQ1LCJhenAiOiIxRjhsQjk4WXJSMlIwaUJxOXF6UU1wWWRvSFpQbG5WMSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZ2V0OmFjdG9yLWJ5LWlkIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZS1ieS1pZCIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciJdfQ.ERB--56ywssVtY31-Ans96eY9OM3Uj79R_JfQUxELRBk0_VpMZYg8qVEWzBrDRWRxwcFaxjUrWMCb9ZXQ-hfkwGeXBKRkskeo9Y0QIp6SmzccO-4XNVEL7n37-hTQEwYfkBeaq9uY5G9IMwEpwqKI-L697Lw9xJ3gYI1-z7wVlck_arhkl4WurBiODMmmbJbwk7WfFcSRqq4W45QdrGLGwq0QuBdbu-YTFVjiD33grL2aBb5Cff1hQsnsNgBD2WHy3-CjUhbND3N-ECw_wuHwFOUCvLwYMXEXp_N_guLibPyteksMrgaBzzL3fvDwPWqRXInuEMBBl0LeJ2YOlcgrw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Executive Producer",
+			"item": [
+				{
+					"name": "Actors",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/1",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Edward Norton\",\n\t\"age\": \"54\",\n    \"gender\": \"male\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"age\": \"59\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/actors/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"actors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Fight Club\",\n\t\"release_date\": \"10/15/1999\",\n\t\"cast\": [\"Brad Pitt\", \"Edward Norton\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cast\": [\n        \"Brad Pitt\",\n        \"Edward Norton\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/1",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movie",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{protocol}}{{hostname}}:{{port}}/movies/2",
+							"host": [
+								"{{protocol}}{{hostname}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"movies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxsMENtVGp5UEpFSEVVcTJmRFhLZiJ9.eyJpc3MiOiJodHRwczovL2Rldi01dHhqam8xZzFqcHk0MjdiLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2NTY4MzA3YmQ1YzZiZmQ5MzNhMWEwMzYiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTcwMTMzNjE3OCwiZXhwIjoxNzAxNDIyNTc4LCJhenAiOiIxRjhsQjk4WXJSMlIwaUJxOXF6UU1wWWRvSFpQbG5WMSIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOmFjdG9yIiwiZGVsZXRlOm1vdmllIiwiZ2V0OmFjdG9yLWJ5LWlkIiwiZ2V0OmFjdG9ycyIsImdldDptb3ZpZS1ieS1pZCIsImdldDptb3ZpZXMiLCJwYXRjaDphY3RvciIsInBhdGNoOm1vdmllIiwicG9zdDphY3RvciIsInBvc3Q6bW92aWUiXX0.gdJTbVp7CuoBvuBqBAcYvt37zR3IERQ4nXAfQ_PcPBwXhlpMV8eucFJaG4qGHk2j2-2ZRF_Pms2dotNh10IGF45p_nqt8oZDgfXlXAJOoAWUB0azf3TJZFMK7cpohrW9Wc0Xc2QircrtyUdEXGz8TJFpeegh70e0g1mDtN1Wkna68yyf9O_DUTb6u5FaKpPbIR3hhisn1E7g_ViJYQxeUuaWe9eOUNFxkvhWduQyX1h6pGORR97VKTrUnySlG_2YVppkzLisAZskBjNaOxXx0rbJNhq0yLUyQCQKPEKmxRcTbHQdtjLayszaz_Uz6gRqZxwiLmY1U_eCX9MDb-X7hQ",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}{{hostname}}:{{port}}",
+					"host": [
+						"{{protocol}}{{hostname}}"
+					],
+					"port": "{{port}}"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dev-5txjjo1g1jpy427b.us.auth0.com/authorize?audience=capstone&response_type=token&client_id=1F8lB98YrR2R0iBq9qzQMpYdoHZPlnV1&redirect_uri=https://127.0.0.1:8080/callback",
+					"protocol": "https",
+					"host": [
+						"dev-5txjjo1g1jpy427b",
+						"us",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "audience",
+							"value": "capstone"
+						},
+						{
+							"key": "response_type",
+							"value": "token"
+						},
+						{
+							"key": "client_id",
+							"value": "1F8lB98YrR2R0iBq9qzQMpYdoHZPlnV1"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://127.0.0.1:8080/callback"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "protocol",
+			"value": "https://",
+			"type": "string"
+		},
+		{
+			"key": "hostname",
+			"value": "127.0.0.1",
+			"type": "string"
+		},
+		{
+			"key": "port",
+			"value": "8080",
+			"type": "string"
+		}
+	]
+}
