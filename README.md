@@ -101,13 +101,7 @@ psql -U postgres -d capstone_test -f capstone_app/database/capstone.sql
 
 (The first time you run the unit tests, omit the dropdb command.)
 
-To run the tests:
-
-```bash
-python tests/test_capstone_app.py
-```
-
-Optionally, pytest can be run directly for prettier formatting and to display code coverage:
+To run the tests (using pytest with code coverage enabled):
 
 ```bash
 pytest --cov-report term-missing --cov
