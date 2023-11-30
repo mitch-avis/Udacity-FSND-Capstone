@@ -30,10 +30,8 @@ def create_app(config_class=Config):
     with app.app_context():
         # Initialize database
         _initialize_database(app, config_class)
-        # Add error handlers to app
-        _initialize_error_handlers(app)
-        # Add API endpoints to app
-        _initialize_api_endpoints(app)
+        # Add Flask Blueprints to app
+        _add_blueprints(app)
         # Return initialized app
         return app
 
@@ -52,17 +50,16 @@ def _initialize_database(app: Flask, config_class: Config):
     setup_db(app, db_path)
 
 
-def _initialize_error_handlers(app: Flask):
-    """Registers Flask error handlers blueprint."""
-    from capstone_app.utils.error_handlers import errors  # pylint: disable=C0415
+def _add_blueprints(app: Flask):
+    """Registers Flask Blueprints."""
+    # pylint: disable=C0415
+    from capstone_app.api.views import api_bp
+    from capstone_app.auth.views import auth_bp
+    from capstone_app.errors.views import errors_bp
 
     # Add error handlers blueprint to app
-    app.register_blueprint(errors)
-
-
-def _initialize_api_endpoints(app: Flask):
-    """Registers Flask API endpoints blueprint."""
-    from capstone_app.routes.api import api  # pylint: disable=C0415
-
+    app.register_blueprint(errors_bp)
+    # Add OAuth blueprint to app
+    app.register_blueprint(auth_bp, url_prefix="/")
     # Add API endpoints blueprint to app
-    app.register_blueprint(api)
+    app.register_blueprint(api_bp, url_prefix="/")
