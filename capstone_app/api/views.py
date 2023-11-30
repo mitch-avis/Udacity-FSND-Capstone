@@ -7,8 +7,6 @@ from capstone_app.database.models import Actor, Movie
 from capstone_app.errors.views import APIError
 
 BAD_REQUEST = ["Bad Request", 400]
-UNAUTHORIZED = ["Unauthorized", 401]
-FORBIDDEN = ["Forbidden", 403]
 NOT_FOUND = ["Not Found", 404]
 UNPROCESSABLE_CONTENT = ["Unprocessable Content", 422]
 
