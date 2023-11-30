@@ -6,7 +6,7 @@ from flask_cors import CORS
 
 from capstone_app.config.env_config import Config
 from capstone_app.config.logger_config import LOGGING_CONFIG
-from capstone_app.database.models import db_drop_and_create_all, setup_db
+from capstone_app.database.models import db_drop_and_create_all, setup_db  # noqa: F401
 
 # Logger formatting
 dictConfig(LOGGING_CONFIG)
@@ -46,12 +46,12 @@ def _initialize_database(app: Flask, config_class: Config):
     # Initialize database
     setup_db(app, db_path)
     # Uncomment this to reinitialize the database with test rows
-    db_drop_and_create_all()
+    # db_drop_and_create_all()
 
 
 def _add_blueprints(app: Flask):
-    """Registers Flask Blueprints."""
     # pylint: disable=C0415
+    """Registers Flask Blueprints."""
     from capstone_app.api.views import api_bp
     from capstone_app.errors.views import errors_bp
 
