@@ -27,21 +27,15 @@ oauth.register(
 
 @auth_bp.route("/login")
 def login():
-    """Redirects the user to the Auth0 Universal Login
-    (https://auth0.com/docs/authenticate/login/auth0-universal-login)"""
-    return oauth.auth0.authorize_redirect(
-        redirect_uri=url_for("auth.callback", _external=True), audience=auth0_config["AUDIENCE"]
-    )
+    """Redirects the user to the Auth0 Universal Login"""
+    return oauth.auth0.authorize_redirect(redirect_uri=url_for("auth.callback", _external=True))
 
 
 @auth_bp.route("/signup")
 def signup():
-    """Redirects the user to the Auth0 Universal Login
-    (https://auth0.com/docs/authenticate/login/auth0-universal-login)"""
+    """Redirects the user to the Auth0 Universal Login"""
     return oauth.auth0.authorize_redirect(
-        redirect_uri=url_for("auth.callback", _external=True),
-        screen_hint="signup",
-        audience=auth0_config["AUDIENCE"],
+        redirect_uri=url_for("auth.callback", _external=True), screen_hint="signup"
     )
 
 
@@ -51,7 +45,7 @@ def callback():
     token = oauth.auth0.authorize_access_token()
     session["user"] = token
     # The app assumes for a /profile path to be available, change here if it's not
-    return redirect("/profile")
+    return redirect("/")
 
 
 @auth_bp.route("/logout")
@@ -64,7 +58,7 @@ def logout():
         + "/v2/logout?"
         + urlencode(
             {
-                "returnTo": url_for("webapp.home", _external=True),
+                "returnTo": url_for("api.home", _external=True),
                 "client_id": client_id,
             },
             quote_via=quote_plus,

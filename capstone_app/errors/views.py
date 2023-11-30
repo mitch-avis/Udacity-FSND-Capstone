@@ -3,7 +3,7 @@ from werkzeug.exceptions import HTTPException
 
 from capstone_app import log  # pylint: disable=R0401
 
-errors = Blueprint("errors", __name__)
+errors_bp = Blueprint("errors", __name__)
 
 
 class APIException(Exception):
@@ -31,13 +31,13 @@ class APIException(Exception):
         return response
 
 
-@errors.app_errorhandler(APIException)
+@errors_bp.app_errorhandler(APIException)
 def invalid_api_usage(error: APIException):
     log.debug(str(error.to_dict()))
     return jsonify(error.to_dict()), error.status_code
 
 
-@errors.app_errorhandler(Exception)
+@errors_bp.app_errorhandler(Exception)
 def handle_exception(error: Exception):
     if isinstance(error, HTTPException):
         status_code = error.code
