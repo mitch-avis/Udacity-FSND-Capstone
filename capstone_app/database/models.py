@@ -1,8 +1,8 @@
 import json
+from datetime import date, datetime
 
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Date, ForeignKey, Integer, String, Table
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy import Column, Date, ForeignKey, Integer, String
 
 from capstone_app.config.env_config import Config
 
@@ -26,14 +26,32 @@ def setup_db(app, database_path=db_path):
     db.create_all()
 
 
-class Base(DeclarativeBase):
-    # pylint: disable=R0903
-    pass
+def db_drop_and_create_all():
+    """Drops the database tables and starts fresh. Can be used to initialize a clean database."""
+    db.drop_all()
+    db.create_all()
+    # Add one demo row for each model to help with Postman tests
+    movie = Movie(
+        title="Fight Club",
+        release_date=date(1999, 10, 15),
+    )
+    movie.insert()
+    actor_1 = Actor(
+        name="Brad Pitt",
+        age=59,
+        gender="male",
+    )
+    actor_1.insert()
+    actor_2 = Actor(
+        name="Edward Norton",
+        age=54,
+        gender="male",
+    )
+    actor_2.insert()
 
 
-actor_in_movie = Table(
+actor_in_movie = db.Table(
     "actor_in_movie",
-    Base.metadata,
     Column("actor_id", Integer, ForeignKey("actors.id"), primary_key=True),
     Column("movie_id", Integer, ForeignKey("movies.id"), primary_key=True),
 )
@@ -73,7 +91,6 @@ class Movie(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            "recipe": self.release_date,
         }
 
     def long(self):
@@ -81,7 +98,7 @@ class Movie(db.Model):
         return {
             "id": self.id,
             "title": self.title,
-            "recipe": self.release_date,
+            "release_date": datetime.strftime(self.release_date, "%B %d, %Y"),
             "cast": [actor.name for actor in self.cast],
         }
 
