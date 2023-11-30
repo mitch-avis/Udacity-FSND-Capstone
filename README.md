@@ -2,7 +2,7 @@
 
 ## Capstone Project for Udacity Full Stack Web Developer Nanodegree
 
-Render Link: <https://TBD>
+Render Link: <https://udacity-fsnd-capstone.onrender.com>
 
 ## Getting Started
 
@@ -187,7 +187,7 @@ The API will return the following errors based on how the request fails:
   - Root/Home endpoint
   - Public endpoint; does not require authentication
 - Example Request:
-  - `https://TBD`
+  - `https://udacity-fsnd-capstone.onrender.com`
 
 <details>
     <summary>Example Response</summary>
@@ -207,7 +207,7 @@ The API will return the following errors based on how the request fails:
   - Gets the list of all actors
   - Requires `get:actors` permission
 - Example Request:
-  - `https://TBD/actors`
+  - `https://udacity-fsnd-capstone.onrender.com/actors`
 
 <details>
     <summary markdown="span">Example Response</summary>
@@ -236,7 +236,7 @@ The API will return the following errors based on how the request fails:
   - Gets an actor's info using their ID
   - Requires `get:actor-by-id` permission
 - Example Request:
-  - `https://TBD/actors/1`
+  - `https://udacity-fsnd-capstone.onrender.com/actors/1`
 
 <details>
     <summary>Example Response</summary>
@@ -265,7 +265,7 @@ The API will return the following errors based on how the request fails:
   - age: number, required
   - gender: string, required
 - Example Request:
-  - `https://TBD/actors`
+  - `https://udacity-fsnd-capstone.onrender.com/actors`
   - Request Body:
 
      ```json
@@ -298,7 +298,7 @@ The API will return the following errors based on how the request fails:
   - age: number, optional
   - gender: string, optional
 - Example Request:
-  - `https://TBD/actors/2`
+  - `https://udacity-fsnd-capstone.onrender.com/actors/2`
   - Request Body:
 
      ```json
@@ -332,7 +332,7 @@ The API will return the following errors based on how the request fails:
   - Will also delete the actor_in_movie link for that actor, thus removing them from the cast list
     of any movie they were previously in
 - Example Request:
-  - `https://TBD/actors/2`
+  - `https://udacity-fsnd-capstone.onrender.com/actors/2`
 
 <details>
     <summary>Example Response</summary>
@@ -352,7 +352,7 @@ The API will return the following errors based on how the request fails:
   - Gets the list of all movies
   - Requires `get:movies` permission
 - Example Request:
-  - `https://TBD/movies`
+  - `https://udacity-fsnd-capstone.onrender.com/movies`
 
 <details>
     <summary>Example Response</summary>
@@ -377,7 +377,7 @@ The API will return the following errors based on how the request fails:
   - Gets an movie's info using its ID
   - Requires `get:movie-by-id` permission
 - Example Request:
-  - `https://TBD/movies/2`
+  - `https://udacity-fsnd-capstone.onrender.com/movies/2`
 
 <details>
 <summary>Example Response</summary>
@@ -410,7 +410,7 @@ The API will return the following errors based on how the request fails:
   - cast: array of strings, non-empty, required (Note: Actors passed in the `cast` array in the
     request body must already exist in the database prior to making this request)
 - Example Request:
-  - `https://TBD/actors`
+  - `https://udacity-fsnd-capstone.onrender.com/actors`
   - Request Body:
 
      ```json
@@ -444,7 +444,7 @@ The API will return the following errors based on how the request fails:
   - cast: array of string, non-empty, optional (Note: Actors passed in the `cast` array in the
     request body must already exist in the database prior to making this request)
 - Example Request:
-  - `https://TBD/movies/1`
+  - `https://udacity-fsnd-capstone.onrender.com/movies/1`
   - Request Body:
 
      ```json
@@ -483,7 +483,7 @@ The API will return the following errors based on how the request fails:
   - Requires `delete:movie` permission
   - Will not affect the actors present in the database
 - Example Request:
-  - `https://TBD/movies/2`
+  - `https://udacity-fsnd-capstone.onrender.com/movies/2`
 
 <details>
     <summary>Example Response</summary>
