@@ -91,7 +91,8 @@ TESTING="False"
 
 ## Testing
 
-To initialize the test database, run the following commands:
+To initialize the test database, run the following commands (The first time you run the unit tests,
+omit the dropdb command):
 
 ```bash
 dropdb capstone_test
@@ -99,7 +100,11 @@ createdb capstone_test
 psql -U postgres -d capstone_test -f capstone_app/database/capstone.sql
 ```
 
-(The first time you run the unit tests, omit the dropdb command.)
+There is also a useful Bash script that performs these three commands:
+
+```bash
+./init_test_db.sh
+```
 
 To run the tests (using pytest with code coverage enabled):
 
@@ -129,25 +134,25 @@ Roles:
   - Permissions:
     - `get:actors`
     - `get:actor-by-id`
+    - `post:actor`
+    - `patch:actor`
     - `get:movies`
     - `get:movie-by-id`
-    - `patch:actor`
     - `patch:movie`
-    - `post:actor`
-    - `post:movie`
+    - `delete:movie`
 - Executive Producer
   - Has all permissions a Casting Director has, plus...
   - Can add or delete a movie from the database
   - Permissions:
     - `get:actors`
     - `get:actor-by-id`
+    - `post:actor`
+    - `patch:actor`
+    - `delete:actor`
     - `get:movies`
     - `get:movie-by-id`
-    - `patch:actor`
-    - `patch:movie`
-    - `post:actor`
     - `post:movie`
-    - `delete:actor`
+    - `patch:movie`
     - `delete:movie`
 
 ### Error Handling
