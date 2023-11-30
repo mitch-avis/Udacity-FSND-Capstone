@@ -28,6 +28,7 @@ def to_dict(error):
         "code": error.code,
         "error": error.name,
         "message": error.description,
+        "success": False,
     }
     return response
 
@@ -42,7 +43,8 @@ def handle_exception(error: Exception):
         response = {
             "error": "Internal Server Error",
             "status_code": status_code,
-            "detail": str(error),
+            "message": str(error),
+            "success": False,
         }
     log.debug(str(response))
     return jsonify(response), status_code
