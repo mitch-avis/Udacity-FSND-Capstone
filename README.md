@@ -110,7 +110,7 @@ python tests/test_capstone_app.py
 Optionally, pytest can be run directly for prettier formatting and to display code coverage:
 
 ```bash
-pytest --cov-report term-missing --cov=capstone_app
+pytest --cov-report term-missing --cov
 ```
 
 ## API Reference
