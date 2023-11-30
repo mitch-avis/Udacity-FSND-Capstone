@@ -6,13 +6,15 @@ from sqlalchemy import Column, Date, ForeignKey, Integer, String
 
 from capstone_app.config.env_config import Config
 
-DB_USER = Config.DB_USER
-DB_PASSWORD = Config.DB_PASSWORD
-DB_HOST = Config.DB_HOST
-DB_PORT = Config.DB_PORT
-DB_NAME = Config.DB_NAME
-
-db_path = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+if Config.DB_PATH is not None:
+    db_path = Config.DB_PATH
+else:
+    DB_USER = Config.DB_USER
+    DB_PASSWORD = Config.DB_PASSWORD
+    DB_HOST = Config.DB_HOST
+    DB_PORT = Config.DB_PORT
+    DB_NAME = Config.DB_NAME
+    db_path = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
 db = SQLAlchemy()
 

@@ -73,20 +73,20 @@ export FLASK_DEBUG=True
 List of all environment variables that can be set, with their default values:
 
 ```bash
-ALGORITHMS="RS256"
-ALLOWED_ORIGINS="*"
-API_AUDIENCE="capstone"
-AUTH0_DOMAIN="dev-5txjjo1g1jpy427b.us.auth0.com"
-DB_HOST="127.0.0.1"
-DB_NAME="capstone"
-DB_PASSWORD=""
-DB_PORT="5432"
-DB_USER="postgres"
 FLASK_APP="udacity_fsnd_capstone"
 FLASK_DEBUG="False"
 HOST="0.0.0.0"
 PORT="8080"
-TESTING="False"
+ALLOWED_ORIGINS="*"
+DB_PATH="None"
+DB_USER="postgres"
+DB_PASSWORD=""
+DB_HOST="127.0.0.1"
+DB_PORT="5432"
+DB_NAME="capstone"
+AUTH0_DOMAIN="dev-5txjjo1g1jpy427b.us.auth0.com"
+ALGORITHMS="RS256"
+API_AUDIENCE="capstone"
 ```
 
 ## Testing

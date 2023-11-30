@@ -36,13 +36,16 @@ def create_app(config_class=Config):
 def _initialize_database(app: Flask, config_class: Config):
     """Initializes the database using loaded configuration variables."""
     # Load database variables from config class
-    db_user = config_class.DB_USER
-    db_password = config_class.DB_PASSWORD
-    db_host = config_class.DB_HOST
-    db_port = config_class.DB_PORT
-    db_name = config_class.DB_NAME
-    # Construct database path from variables
-    db_path = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
+    if config_class.DB_PATH is not None:
+        db_path = config_class.DB_PATH
+    else:
+        db_user = config_class.DB_USER
+        db_password = config_class.DB_PASSWORD
+        db_host = config_class.DB_HOST
+        db_port = config_class.DB_PORT
+        db_name = config_class.DB_NAME
+        # Construct database path from variables
+        db_path = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
     # Initialize database
     setup_db(app, db_path)
     # Uncomment this to reinitialize the database with test rows
