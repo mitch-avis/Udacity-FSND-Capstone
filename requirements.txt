@@ -10,6 +10,7 @@ cryptography==41.0.7
 dateparser==1.2.0
 dill==0.3.7
 ecdsa==0.18.0
+exceptiongroup==1.2.0
 flake8==6.1.0
 Flask==3.0.0
 Flask-Cors==4.0.0
@@ -43,6 +44,7 @@ regex==2023.10.3
 rsa==4.9
 six==1.16.0
 SQLAlchemy==2.0.23
+tomli==2.0.1
 tomlkit==0.12.3
 typing_extensions==4.8.0
 tzdata==2023.3
