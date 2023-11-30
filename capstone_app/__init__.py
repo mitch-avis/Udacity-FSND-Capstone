@@ -4,10 +4,9 @@ from logging.config import dictConfig
 from flask import Flask
 from flask_cors import CORS
 
-from capstone_app.config.auth_config import auth_config
 from capstone_app.config.env_config import Config
 from capstone_app.config.logger_config import LOGGING_CONFIG
-from capstone_app.database.models import setup_db
+from capstone_app.database.models import db_drop_and_create_all, setup_db
 
 # Logger formatting
 dictConfig(LOGGING_CONFIG)
@@ -21,8 +20,6 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     # Load flask config
     app.config.from_object(config_class)
-    # Load auth config secrets
-    app.secret_key = auth_config["WEBAPP"]["SECRET_KEY"]
     # Configure CORS
     allowed_origins = config_class.ALLOWED_ORIGINS
     CORS(app, origins=allowed_origins)
@@ -48,18 +45,17 @@ def _initialize_database(app: Flask, config_class: Config):
     db_path = f"postgresql+psycopg2://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}"
     # Initialize database
     setup_db(app, db_path)
+    # Uncomment this to reinitialize the database with test rows
+    db_drop_and_create_all()
 
 
 def _add_blueprints(app: Flask):
     """Registers Flask Blueprints."""
     # pylint: disable=C0415
     from capstone_app.api.views import api_bp
-    from capstone_app.auth.views import auth_bp
     from capstone_app.errors.views import errors_bp
 
     # Add error handlers blueprint to app
     app.register_blueprint(errors_bp)
-    # Add OAuth blueprint to app
-    app.register_blueprint(auth_bp, url_prefix="/")
     # Add API endpoints blueprint to app
     app.register_blueprint(api_bp, url_prefix="/")
