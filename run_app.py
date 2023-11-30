@@ -16,7 +16,7 @@ def main():
         serve(app, host=HOST, port=PORT)
     else:
         log.warning("Running %s in debug mode on %s:%s...", app.name, HOST, PORT)
-        app.run(host=HOST, port=PORT, debug=DEBUG)
+        app.run(host=HOST, port=PORT, debug=DEBUG, ssl_context="adhoc")
 
 
 if __name__ == "__main__":
