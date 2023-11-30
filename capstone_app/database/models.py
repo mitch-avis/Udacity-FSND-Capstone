@@ -31,11 +31,6 @@ def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
     # Add one demo row for each model to help with Postman tests
-    movie = Movie(
-        title="Fight Club",
-        release_date=date(1999, 10, 15),
-    )
-    movie.insert()
     actor_1 = Actor(
         name="Brad Pitt",
         age=59,
@@ -48,6 +43,11 @@ def db_drop_and_create_all():
         gender="male",
     )
     actor_2.insert()
+    movie = Movie(
+        title="Fight Club",
+        release_date=date(1999, 10, 15),
+    )
+    movie.insert()
 
 
 actor_in_movie = db.Table(
