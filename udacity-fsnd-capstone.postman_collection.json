@@ -860,12 +860,12 @@
 		},
 		{
 			"key": "hostname",
-			"value": "127.0.0.1",
+			"value": "udacity-fsnd-capstone.onrender.com",
 			"type": "string"
 		},
 		{
 			"key": "port",
-			"value": "8080",
+			"value": "",
 			"type": "string"
 		}
 	]
